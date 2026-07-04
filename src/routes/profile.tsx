@@ -86,9 +86,10 @@ function ProfilePage() {
 
       <section className="mt-5 px-5">
         <div className="rounded-3xl bg-card shadow-card divide-y divide-border">
-          {items.map(({ icon: Icon, label, meta, ok }) => (
-            <button
+          {items.map(({ icon: Icon, label, meta, ok, to }) => (
+            <Link
               key={label}
+              to={to}
               className="flex w-full items-center gap-3 p-4 text-left active:bg-muted transition-colors first:rounded-t-3xl last:rounded-b-3xl"
             >
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
@@ -101,11 +102,14 @@ function ProfilePage() {
                 </span>
               )}
               <ChevronRight className="h-4 w-4 text-muted-foreground" />
-            </button>
+            </Link>
           ))}
         </div>
 
-        <button className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl border border-destructive/20 bg-destructive/5 py-3.5 text-sm font-semibold text-destructive active:scale-[0.98] transition-transform">
+        <button
+          onClick={signOut}
+          className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl border border-destructive/20 bg-destructive/5 py-3.5 text-sm font-semibold text-destructive active:scale-[0.98] transition-transform"
+        >
           <LogOut className="h-4 w-4" />
           Chiqish
         </button>
