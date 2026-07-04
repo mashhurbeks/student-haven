@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 import {
   Sparkles,
   Search as SearchIcon,
@@ -9,6 +10,7 @@ import {
   TrendingUp,
   GraduationCap,
   ArrowRight,
+  HelpCircle,
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { ListingCard } from "@/components/ListingCard";
