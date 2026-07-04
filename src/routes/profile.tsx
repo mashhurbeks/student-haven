@@ -26,14 +26,22 @@ export const Route = createFileRoute("/profile")({
 });
 
 const items = [
-  { icon: Heart, label: "Saqlangan", meta: "12 ta" },
-  { icon: FileText, label: "Shartnomalar", meta: "1 ta faol" },
-  { icon: Shield, label: "Tekshiruv", meta: "Tasdiqlangan", ok: true },
-  { icon: Bell, label: "Bildirishnomalar" },
-  { icon: Settings, label: "Sozlamalar" },
+  { icon: Heart, label: "Saqlangan", meta: "12 ta", to: "/" as const },
+  { icon: FileText, label: "Shartnomalar", meta: "1 ta faol", to: "/" as const },
+  { icon: Shield, label: "Tekshiruv", meta: "Tasdiqlangan", ok: true, to: "/" as const },
+  { icon: Bell, label: "Bildirishnomalar", to: "/" as const },
+  { icon: HelpCircle, label: "Yordam", meta: "Har bir tugma nima uchun", to: "/help" as const },
+  { icon: Settings, label: "Sozlamalar", to: "/" as const },
 ];
 
 function ProfilePage() {
+  const navigate = useNavigate();
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    localStorage.removeItem("roomie_onboarded");
+    toast.success("Hisobdan chiqdingiz");
+    navigate({ to: "/auth" });
+  };
   return (
     <MobileShell>
       <header className="px-5 pt-6 pb-4">
