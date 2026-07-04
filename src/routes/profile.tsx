@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import {
   BadgeCheck,
   Heart,
@@ -8,8 +8,11 @@ import {
   Bell,
   ChevronRight,
   LogOut,
+  HelpCircle,
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 import rm1 from "@/assets/roommate-1.jpg";
 
 export const Route = createFileRoute("/profile")({
@@ -23,14 +26,22 @@ export const Route = createFileRoute("/profile")({
 });
 
 const items = [
-  { icon: Heart, label: "Saqlangan", meta: "12 ta" },
-  { icon: FileText, label: "Shartnomalar", meta: "1 ta faol" },
-  { icon: Shield, label: "Tekshiruv", meta: "Tasdiqlangan", ok: true },
-  { icon: Bell, label: "Bildirishnomalar" },
-  { icon: Settings, label: "Sozlamalar" },
+  { icon: Heart, label: "Saqlangan", meta: "12 ta", to: "/" as const },
+  { icon: FileText, label: "Shartnomalar", meta: "1 ta faol", to: "/" as const },
+  { icon: Shield, label: "Tekshiruv", meta: "Tasdiqlangan", ok: true, to: "/" as const },
+  { icon: Bell, label: "Bildirishnomalar", to: "/" as const },
+  { icon: HelpCircle, label: "Yordam", meta: "Har bir tugma nima uchun", to: "/help" as const },
+  { icon: Settings, label: "Sozlamalar", to: "/" as const },
 ];
 
 function ProfilePage() {
+  const navigate = useNavigate();
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    localStorage.removeItem("roomie_onboarded");
+    toast.success("Hisobdan chiqdingiz");
+    navigate({ to: "/auth" });
+  };
   return (
     <MobileShell>
       <header className="px-5 pt-6 pb-4">
@@ -75,9 +86,10 @@ function ProfilePage() {
 
       <section className="mt-5 px-5">
         <div className="rounded-3xl bg-card shadow-card divide-y divide-border">
-          {items.map(({ icon: Icon, label, meta, ok }) => (
-            <button
+          {items.map(({ icon: Icon, label, meta, ok, to }) => (
+            <Link
               key={label}
+              to={to}
               className="flex w-full items-center gap-3 p-4 text-left active:bg-muted transition-colors first:rounded-t-3xl last:rounded-b-3xl"
             >
               <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
@@ -90,11 +102,14 @@ function ProfilePage() {
                 </span>
               )}
               <ChevronRight className="h-4 w-4 text-muted-foreground" />
-            </button>
+            </Link>
           ))}
         </div>
 
-        <button className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl border border-destructive/20 bg-destructive/5 py-3.5 text-sm font-semibold text-destructive active:scale-[0.98] transition-transform">
+        <button
+          onClick={signOut}
+          className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl border border-destructive/20 bg-destructive/5 py-3.5 text-sm font-semibold text-destructive active:scale-[0.98] transition-transform"
+        >
           <LogOut className="h-4 w-4" />
           Chiqish
         </button>
