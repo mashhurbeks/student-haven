@@ -99,4 +99,4 @@ export const roommates: Roommate[] = [
 ];
 
 export const formatSom = (n: number) =>
-  new Intl.NumberFormat("uz-UZ").format(n) + " so'm";
+  n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " so'm";
