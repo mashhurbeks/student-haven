@@ -47,6 +47,14 @@ const chips = [
 ];
 
 function Home() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!localStorage.getItem("roomie_onboarded")) {
+      navigate({ to: "/welcome", replace: true });
+    }
+  }, [navigate]);
+
   return (
     <MobileShell>
       {/* Header */}
@@ -61,15 +69,25 @@ function Home() {
               Salom, Doniyor 👋
             </h1>
           </div>
-          <button
-            aria-label="Bildirishnomalar"
-            className="relative grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-card shadow-soft active:scale-95 transition-transform"
-          >
-            <Bell className="h-5 w-5" strokeWidth={2} />
-            <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-destructive ring-2 ring-card" />
-          </button>
+          <div className="flex shrink-0 items-center gap-2">
+            <Link
+              to="/help"
+              aria-label="Yordam"
+              className="grid h-11 w-11 place-items-center rounded-2xl bg-card shadow-soft active:scale-95 transition-transform"
+            >
+              <HelpCircle className="h-5 w-5" strokeWidth={2} />
+            </Link>
+            <button
+              aria-label="Bildirishnomalar"
+              className="relative grid h-11 w-11 place-items-center rounded-2xl bg-card shadow-soft active:scale-95 transition-transform"
+            >
+              <Bell className="h-5 w-5" strokeWidth={2} />
+              <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-destructive ring-2 ring-card" />
+            </button>
+          </div>
         </div>
       </header>
+
 
       {/* AI Search */}
       <section className="px-5 pt-4">
