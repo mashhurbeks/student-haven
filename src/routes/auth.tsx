@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Mail, Phone, Send, ArrowLeft, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable";
@@ -21,19 +21,42 @@ function AuthPage() {
   const [fullName, setFullName] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // If already signed in (or session arrives after OAuth), leave the auth page.
+  useEffect(() => {
+    let mounted = true;
+    supabase.auth.getSession().then(({ data }) => {
+      if (mounted && data.session) navigate({ to: "/", replace: true });
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session && (event === "SIGNED_IN" || event === "INITIAL_SESSION" || event === "TOKEN_REFRESHED")) {
+        navigate({ to: "/", replace: true });
+      }
+    });
+    return () => {
+      mounted = false;
+      sub.subscription.unsubscribe();
+    };
+  }, [navigate]);
+
   const handleGoogle = async () => {
     setLoading(true);
-    const r = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin + "/auth",
-    });
-    if (r.error) {
-      toast.error("Google orqali kirishda xatolik");
+    try {
+      const r = await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: window.location.origin,
+      });
+      if (r.error) {
+        toast.error("Google: " + (r.error.message ?? "xatolik"));
+        setLoading(false);
+        return;
+      }
+      if (r.redirected) return; // browser will navigate
+      // popup flow: listener above will navigate on SIGNED_IN
+      toast.success("Muvaffaqiyatli kirdingiz");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Google orqali kirishda xatolik";
+      toast.error(msg);
       setLoading(false);
-      return;
     }
-    if (r.redirected) return;
-    toast.success("Muvaffaqiyatli kirdingiz");
-    navigate({ to: "/" });
   };
 
   const handleEmail = async (e: React.FormEvent) => {
