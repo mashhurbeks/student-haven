@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WelcomeRouteImport } from './routes/welcome'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as RoommatesRouteImport } from './routes/roommates'
+import { Route as RoommateSurveyRouteImport } from './routes/roommate-survey'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as HelpRouteImport } from './routes/help'
@@ -32,6 +33,11 @@ const SearchRoute = SearchRouteImport.update({
 const RoommatesRoute = RoommatesRouteImport.update({
   id: '/roommates',
   path: '/roommates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoommateSurveyRoute = RoommateSurveyRouteImport.update({
+  id: '/roommate-survey',
+  path: '/roommate-survey',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/help': typeof HelpRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
+  '/roommate-survey': typeof RoommateSurveyRoute
   '/roommates': typeof RoommatesRoute
   '/search': typeof SearchRoute
   '/welcome': typeof WelcomeRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/help': typeof HelpRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
+  '/roommate-survey': typeof RoommateSurveyRoute
   '/roommates': typeof RoommatesRoute
   '/search': typeof SearchRoute
   '/welcome': typeof WelcomeRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/help': typeof HelpRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
+  '/roommate-survey': typeof RoommateSurveyRoute
   '/roommates': typeof RoommatesRoute
   '/search': typeof SearchRoute
   '/welcome': typeof WelcomeRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/help'
     | '/onboarding'
     | '/profile'
+    | '/roommate-survey'
     | '/roommates'
     | '/search'
     | '/welcome'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/help'
     | '/onboarding'
     | '/profile'
+    | '/roommate-survey'
     | '/roommates'
     | '/search'
     | '/welcome'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/help'
     | '/onboarding'
     | '/profile'
+    | '/roommate-survey'
     | '/roommates'
     | '/search'
     | '/welcome'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   HelpRoute: typeof HelpRoute
   OnboardingRoute: typeof OnboardingRoute
   ProfileRoute: typeof ProfileRoute
+  RoommateSurveyRoute: typeof RoommateSurveyRoute
   RoommatesRoute: typeof RoommatesRoute
   SearchRoute: typeof SearchRoute
   WelcomeRoute: typeof WelcomeRoute
@@ -168,6 +181,13 @@ declare module '@tanstack/react-router' {
       path: '/roommates'
       fullPath: '/roommates'
       preLoaderRoute: typeof RoommatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roommate-survey': {
+      id: '/roommate-survey'
+      path: '/roommate-survey'
+      fullPath: '/roommate-survey'
+      preLoaderRoute: typeof RoommateSurveyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   HelpRoute: HelpRoute,
   OnboardingRoute: OnboardingRoute,
   ProfileRoute: ProfileRoute,
+  RoommateSurveyRoute: RoommateSurveyRoute,
   RoommatesRoute: RoommatesRoute,
   SearchRoute: SearchRoute,
   WelcomeRoute: WelcomeRoute,
@@ -229,13 +250,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

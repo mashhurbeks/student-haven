@@ -9,6 +9,7 @@ import {
   ChevronRight,
   LogOut,
   HelpCircle,
+  Users,
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { supabase } from "@/integrations/supabase/client";
@@ -26,6 +27,7 @@ export const Route = createFileRoute("/profile")({
 });
 
 const items = [
+  { icon: Users, label: "Xonadosh anketasi", meta: "To'ldiring", highlight: true, to: "/roommate-survey" as const },
   { icon: Heart, label: "Saqlangan", meta: "12 ta", to: "/" as const },
   { icon: FileText, label: "Shartnomalar", meta: "1 ta faol", to: "/" as const },
   { icon: Shield, label: "Tekshiruv", meta: "Tasdiqlangan", ok: true, to: "/" as const },
