@@ -78,6 +78,8 @@ export const listings: Listing[] = [
     verified: false,
     gender: "male",
     amenities: ["WiFi", "Parking", "Lift", "Kir mashina"],
+    lat: 41.2856,
+    lng: 69.2034,
   },
 ];
 
