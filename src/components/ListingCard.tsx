@@ -29,7 +29,11 @@ export function ListingCard({ listing }: { listing: Listing }) {
         <button
           type="button"
           aria-label={saved ? "Saqlanganlardan olib tashlash" : "Saqlash"}
-          onClick={() => setSaved((v) => !v)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setSaved((v) => !v);
+          }}
           className="glass absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full transition-transform active:scale-90"
         >
           <Heart
@@ -39,6 +43,7 @@ export function ListingCard({ listing }: { listing: Listing }) {
             strokeWidth={2}
           />
         </button>
+
       </div>
 
       <div className="p-4">
