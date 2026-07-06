@@ -70,6 +70,6 @@ export function ListingCard({ listing }: { listing: Listing }) {
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
