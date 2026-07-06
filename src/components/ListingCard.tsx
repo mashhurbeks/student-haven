@@ -1,12 +1,18 @@
 import { BadgeCheck, Heart, MapPin } from "lucide-react";
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { formatSom, type Listing } from "@/lib/mock-data";
 
 export function ListingCard({ listing }: { listing: Listing }) {
   const [saved, setSaved] = useState(false);
 
   return (
-    <article className="group overflow-hidden rounded-3xl bg-card shadow-card transition-all active:scale-[0.98]">
+    <Link
+      to="/listing/$id"
+      params={{ id: listing.id }}
+      className="group block overflow-hidden rounded-3xl bg-card shadow-card transition-all active:scale-[0.98]"
+    >
+
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
         <img
           src={listing.image}
