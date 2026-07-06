@@ -17,6 +17,8 @@ export type Listing = {
   verified: boolean;
   gender?: "male" | "female" | "any";
   amenities: string[];
+  lat: number;
+  lng: number;
 };
 
 export type Roommate = {
@@ -44,6 +46,8 @@ export const listings: Listing[] = [
     verified: true,
     gender: "any",
     amenities: ["WiFi", "Kir mashina", "Konditsioner", "Mebel"],
+    lat: 41.3626,
+    lng: 69.2891,
   },
   {
     id: "2",
@@ -58,6 +62,8 @@ export const listings: Listing[] = [
     verified: true,
     gender: "female",
     amenities: ["WiFi", "Konditsioner", "Yangi remont"],
+    lat: 41.3378,
+    lng: 69.2854,
   },
   {
     id: "3",
@@ -72,6 +78,8 @@ export const listings: Listing[] = [
     verified: false,
     gender: "male",
     amenities: ["WiFi", "Parking", "Lift", "Kir mashina"],
+    lat: 41.2856,
+    lng: 69.2034,
   },
 ];
 
