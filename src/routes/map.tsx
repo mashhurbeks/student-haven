@@ -142,7 +142,7 @@ function MapPage() {
 
       {selected && (
         <div
-          className="fixed inset-0 z-[60] flex items-end justify-center bg-black/40 px-3 pb-3"
+          className="fixed inset-0 z-[10000] flex items-end justify-center bg-black/40 px-3 pb-3"
           onClick={() => setSelected(null)}
         >
           <div
