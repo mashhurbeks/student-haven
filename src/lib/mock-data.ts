@@ -17,6 +17,8 @@ export type Listing = {
   verified: boolean;
   gender?: "male" | "female" | "any";
   amenities: string[];
+  lat: number;
+  lng: number;
 };
 
 export type Roommate = {
