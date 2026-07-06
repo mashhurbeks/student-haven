@@ -1,12 +1,18 @@
 import { BadgeCheck, Heart, MapPin } from "lucide-react";
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { formatSom, type Listing } from "@/lib/mock-data";
 
 export function ListingCard({ listing }: { listing: Listing }) {
   const [saved, setSaved] = useState(false);
 
   return (
-    <article className="group overflow-hidden rounded-3xl bg-card shadow-card transition-all active:scale-[0.98]">
+    <Link
+      to="/listing/$id"
+      params={{ id: listing.id }}
+      className="group block overflow-hidden rounded-3xl bg-card shadow-card transition-all active:scale-[0.98]"
+    >
+
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
         <img
           src={listing.image}
@@ -23,7 +29,11 @@ export function ListingCard({ listing }: { listing: Listing }) {
         <button
           type="button"
           aria-label={saved ? "Saqlanganlardan olib tashlash" : "Saqlash"}
-          onClick={() => setSaved((v) => !v)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setSaved((v) => !v);
+          }}
           className="glass absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full transition-transform active:scale-90"
         >
           <Heart
@@ -33,6 +43,7 @@ export function ListingCard({ listing }: { listing: Listing }) {
             strokeWidth={2}
           />
         </button>
+
       </div>
 
       <div className="p-4">
@@ -59,6 +70,6 @@ export function ListingCard({ listing }: { listing: Listing }) {
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
