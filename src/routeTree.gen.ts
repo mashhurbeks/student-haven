@@ -15,6 +15,7 @@ import { Route as RoommatesRouteImport } from './routes/roommates'
 import { Route as RoommateSurveyRouteImport } from './routes/roommate-survey'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as MapRouteImport } from './routes/map'
 import { Route as HelpRouteImport } from './routes/help'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -50,6 +51,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HelpRoute = HelpRouteImport.update({
   id: '/help',
   path: '/help',
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/help': typeof HelpRoute
+  '/map': typeof MapRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/roommate-survey': typeof RoommateSurveyRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/help': typeof HelpRoute
+  '/map': typeof MapRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/roommate-survey': typeof RoommateSurveyRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/help': typeof HelpRoute
+  '/map': typeof MapRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/roommate-survey': typeof RoommateSurveyRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/chat'
     | '/help'
+    | '/map'
     | '/onboarding'
     | '/profile'
     | '/roommate-survey'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/chat'
     | '/help'
+    | '/map'
     | '/onboarding'
     | '/profile'
     | '/roommate-survey'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/chat'
     | '/help'
+    | '/map'
     | '/onboarding'
     | '/profile'
     | '/roommate-survey'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ChatRoute: typeof ChatRoute
   HelpRoute: typeof HelpRoute
+  MapRoute: typeof MapRoute
   OnboardingRoute: typeof OnboardingRoute
   ProfileRoute: typeof ProfileRoute
   RoommateSurveyRoute: typeof RoommateSurveyRoute
@@ -204,6 +217,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/help': {
       id: '/help'
       path: '/help'
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ChatRoute: ChatRoute,
   HelpRoute: HelpRoute,
+  MapRoute: MapRoute,
   OnboardingRoute: OnboardingRoute,
   ProfileRoute: ProfileRoute,
   RoommateSurveyRoute: RoommateSurveyRoute,
