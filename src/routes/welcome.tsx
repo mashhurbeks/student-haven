@@ -13,7 +13,7 @@ function Welcome() {
   useEffect(() => {
     const t = setTimeout(() => {
       const done = typeof window !== "undefined" && localStorage.getItem("roomie_onboarded");
-      navigate({ to: done ? "/auth" : "/onboarding", replace: true });
+      navigate({ to: done ? "/" : "/onboarding", replace: true });
     }, 1800);
     return () => clearTimeout(t);
   }, [navigate]);
