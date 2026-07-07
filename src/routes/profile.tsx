@@ -42,7 +42,7 @@ function ProfilePage() {
     await supabase.auth.signOut();
     localStorage.removeItem("roomie_onboarded");
     toast.success("Hisobdan chiqdingiz");
-    navigate({ to: "/auth" });
+    navigate({ to: "/welcome" });
   };
   return (
     <MobileShell>
