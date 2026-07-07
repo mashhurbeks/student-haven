@@ -40,7 +40,7 @@ function Onboarding() {
 
   const finish = () => {
     localStorage.setItem("roomie_onboarded", "1");
-    navigate({ to: "/auth" });
+    navigate({ to: "/" });
   };
 
   return (
