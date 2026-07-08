@@ -33,6 +33,7 @@ function MapPage() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<any>(null);
   const [selected, setSelected] = useState<Listing | null>(null);
+  const listings = useAllListings();
 
   const center = useMemo<[number, number]>(() => {
     const lat =
@@ -40,7 +41,7 @@ function MapPage() {
     const lng =
       listings.reduce((s, l) => s + l.lng, 0) / Math.max(listings.length, 1);
     return [lat || 41.3111, lng || 69.2797];
-  }, []);
+  }, [listings]);
 
   useEffect(() => {
     let cancelled = false;
