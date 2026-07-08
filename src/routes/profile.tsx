@@ -89,6 +89,23 @@ function ProfilePage() {
         </div>
       </section>
 
+      <section className="mt-4 px-5">
+        <Link
+          to="/add-listing"
+          className="flex items-center gap-3 rounded-3xl bg-foreground p-4 text-background shadow-card active:scale-[0.99] transition-transform"
+        >
+          <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-background/15">
+            <Plus className="h-5 w-5" strokeWidth={2.5} />
+          </span>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-bold">Kvartira qo'shish</p>
+            <p className="text-xs text-background/70">Ijaraga bering — daqiqada</p>
+          </div>
+          <ChevronRight className="h-4 w-4 opacity-70" />
+        </Link>
+      </section>
+
+
       <section className="mt-5 px-5">
         <div className="rounded-3xl bg-card shadow-card divide-y divide-border">
           {items.map(({ icon: Icon, label, meta, ok, to }) => (
