@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { BadgeCheck, MapPin, X, ArrowRight } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
-import { listings, formatSom, type Listing } from "@/lib/mock-data";
+import { formatSom, type Listing } from "@/lib/mock-data";
+import { useAllListings } from "@/hooks/use-all-listings";
 import "leaflet/dist/leaflet.css";
 
 export const Route = createFileRoute("/map")({
