@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { BadgeCheck, MapPin, X, ArrowRight } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
-import { listings, formatSom, type Listing } from "@/lib/mock-data";
+import { formatSom, type Listing } from "@/lib/mock-data";
+import { useAllListings } from "@/hooks/use-all-listings";
 import "leaflet/dist/leaflet.css";
 
 export const Route = createFileRoute("/map")({
@@ -32,6 +33,7 @@ function MapPage() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<any>(null);
   const [selected, setSelected] = useState<Listing | null>(null);
+  const listings = useAllListings();
 
   const center = useMemo<[number, number]>(() => {
     const lat =
@@ -39,7 +41,7 @@ function MapPage() {
     const lng =
       listings.reduce((s, l) => s + l.lng, 0) / Math.max(listings.length, 1);
     return [lat || 41.3111, lng || 69.2797];
-  }, []);
+  }, [listings]);
 
   useEffect(() => {
     let cancelled = false;
@@ -93,7 +95,7 @@ function MapPage() {
         mapRef.current = null;
       }
     };
-  }, [center]);
+  }, [center, listings]);
 
   return (
     <MobileShell>

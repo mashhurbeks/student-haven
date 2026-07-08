@@ -14,7 +14,8 @@ import {
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { ListingCard } from "@/components/ListingCard";
-import { listings, roommates } from "@/lib/mock-data";
+import { roommates } from "@/lib/mock-data";
+import { useAllListings } from "@/hooks/use-all-listings";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,6 +49,7 @@ const chips = [
 
 function Home() {
   const navigate = useNavigate();
+  const listings = useAllListings();
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (!localStorage.getItem("roomie_onboarded")) {

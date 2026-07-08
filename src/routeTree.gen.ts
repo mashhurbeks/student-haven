@@ -19,6 +19,7 @@ import { Route as MapRouteImport } from './routes/map'
 import { Route as HelpRouteImport } from './routes/help'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AddListingRouteImport } from './routes/add-listing'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ListingIdRouteImport } from './routes/listing.$id'
 
@@ -72,6 +73,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AddListingRoute = AddListingRouteImport.update({
+  id: '/add-listing',
+  path: '/add-listing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -85,6 +91,7 @@ const ListingIdRoute = ListingIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/add-listing': typeof AddListingRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/help': typeof HelpRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/add-listing': typeof AddListingRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/help': typeof HelpRoute
@@ -114,6 +122,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/add-listing': typeof AddListingRoute
   '/auth': typeof AuthRoute
   '/chat': typeof ChatRoute
   '/help': typeof HelpRoute
@@ -130,6 +139,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/add-listing'
     | '/auth'
     | '/chat'
     | '/help'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/add-listing'
     | '/auth'
     | '/chat'
     | '/help'
@@ -158,6 +169,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/add-listing'
     | '/auth'
     | '/chat'
     | '/help'
@@ -173,6 +185,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AddListingRoute: typeof AddListingRoute
   AuthRoute: typeof AuthRoute
   ChatRoute: typeof ChatRoute
   HelpRoute: typeof HelpRoute
@@ -258,6 +271,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/add-listing': {
+      id: '/add-listing'
+      path: '/add-listing'
+      fullPath: '/add-listing'
+      preLoaderRoute: typeof AddListingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -277,6 +297,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AddListingRoute: AddListingRoute,
   AuthRoute: AuthRoute,
   ChatRoute: ChatRoute,
   HelpRoute: HelpRoute,
