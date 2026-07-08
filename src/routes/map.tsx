@@ -95,7 +95,7 @@ function MapPage() {
         mapRef.current = null;
       }
     };
-  }, [center]);
+  }, [center, listings]);
 
   return (
     <MobileShell>
