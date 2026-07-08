@@ -11,9 +11,6 @@ import {
   GraduationCap,
   ArrowRight,
   HelpCircle,
-  GraduationCap,
-  ArrowRight,
-  HelpCircle,
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { ListingCard } from "@/components/ListingCard";
