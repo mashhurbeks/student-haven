@@ -49,6 +49,7 @@ const chips = [
 
 function Home() {
   const navigate = useNavigate();
+  const listings = useAllListings();
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (!localStorage.getItem("roomie_onboarded")) {
