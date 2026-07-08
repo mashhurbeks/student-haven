@@ -29,6 +29,7 @@ export const Route = createFileRoute("/profile")({
 });
 
 const items = [
+  { icon: HomeIcon, label: "Mening e'lonlarim", meta: "Ijaraga bering", highlight: true, to: "/add-listing" as const },
   { icon: Users, label: "Xonadosh anketasi", meta: "To'ldiring", highlight: true, to: "/roommate-survey" as const },
   { icon: Heart, label: "Saqlangan", meta: "12 ta", to: "/" as const },
   { icon: FileText, label: "Shartnomalar", meta: "1 ta faol", to: "/" as const },
