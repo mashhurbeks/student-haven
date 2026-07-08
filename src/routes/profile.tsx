@@ -10,6 +10,8 @@ import {
   LogOut,
   HelpCircle,
   Users,
+  Plus,
+  Home as HomeIcon,
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { supabase } from "@/integrations/supabase/client";
