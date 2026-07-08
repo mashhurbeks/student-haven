@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import {
   Sparkles,
   Search as SearchIcon,
-  Mic,
+  Map as MapIcon,
   MapPin,
   Bell,
   ShieldCheck,
@@ -89,32 +89,28 @@ function Home() {
       </header>
 
 
-      {/* AI Search */}
+      {/* Search + Map */}
       <section className="px-5 pt-4">
-        <Link
-          to="/search"
-          className="group block rounded-3xl bg-gradient-to-br from-primary to-[oklch(0.48_0.24_270)] p-5 shadow-glow transition-transform active:scale-[0.99]"
-        >
-          <div className="flex items-center gap-2 text-primary-foreground/90">
-            <Sparkles className="h-4 w-4" strokeWidth={2.5} />
-            <span className="text-xs font-semibold uppercase tracking-wider">
-              AI Qidiruv
+        <div className="flex items-center gap-2">
+          <Link
+            to="/search"
+            className="flex flex-1 items-center gap-2 rounded-2xl border border-border bg-card px-4 py-3 shadow-soft active:scale-[0.99] transition-transform"
+          >
+            <SearchIcon className="h-4 w-4 text-muted-foreground" strokeWidth={2} />
+            <span className="flex-1 truncate text-sm text-muted-foreground">
+              Qidirish
             </span>
-          </div>
-          <p className="mt-2 text-[17px] font-semibold text-primary-foreground leading-snug">
-            "WIUT yaqinida 2 milliongacha, faqat qizlar uchun"
-          </p>
-          <div className="mt-4 flex items-center gap-2">
-            <div className="flex flex-1 items-center gap-2 rounded-2xl bg-white/15 px-4 py-2.5 backdrop-blur-sm">
-              <SearchIcon className="h-4 w-4 text-primary-foreground/80" />
-              <span className="flex-1 truncate text-sm text-primary-foreground/80">
-                Nima izlayapsiz?
-              </span>
-              <Mic className="h-4 w-4 text-primary-foreground/80" />
-            </div>
-          </div>
-        </Link>
+          </Link>
+          <Link
+            to="/map"
+            aria-label="Xarita"
+            className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-border bg-card text-foreground shadow-soft active:scale-95 transition-transform"
+          >
+            <MapIcon className="h-5 w-5" strokeWidth={2} />
+          </Link>
+        </div>
       </section>
+
 
       {/* Filter chips */}
       <section className="mt-5">
