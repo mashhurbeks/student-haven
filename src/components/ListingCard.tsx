@@ -20,12 +20,6 @@ export function ListingCard({ listing }: { listing: Listing }) {
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        {listing.verified && (
-          <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-success px-2.5 py-1 text-[11px] font-semibold text-success-foreground shadow-soft">
-            <BadgeCheck className="h-3.5 w-3.5" strokeWidth={2.5} />
-            Tasdiqlangan
-          </span>
-        )}
         <button
           type="button"
           aria-label={saved ? "Saqlanganlardan olib tashlash" : "Saqlash"}

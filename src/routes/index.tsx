@@ -112,20 +112,6 @@ function Home() {
       </section>
 
 
-      {/* Filter chips */}
-      <section className="mt-5">
-        <div className="no-scrollbar flex gap-2 overflow-x-auto px-5">
-          {chips.map(({ label, icon: Icon }) => (
-            <button
-              key={label}
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border bg-card px-3.5 py-2 text-xs font-medium text-foreground shadow-soft active:scale-95 transition-transform"
-            >
-              {Icon && <Icon className="h-3.5 w-3.5 text-primary" strokeWidth={2.5} />}
-              {label}
-            </button>
-          ))}
-        </div>
-      </section>
 
       {/* Recommended */}
       <section className="mt-7 px-5">
