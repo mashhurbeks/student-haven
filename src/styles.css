@@ -173,3 +173,15 @@
   background-size: 800px 100%;
   animation: shimmer 1.6s linear infinite;
 }
+
+@utility app-bg {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(circle at 12% -10%, color-mix(in oklab, var(--primary) 10%, transparent), transparent 45%),
+    radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--success) 8%, transparent), transparent 40%),
+    radial-gradient(color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
+  background-size: auto, auto, 22px 22px;
+  background-position: 0 0, 0 0, 0 0;
+  background-attachment: fixed, fixed, fixed;
+}
+
