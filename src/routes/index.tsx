@@ -1,16 +1,12 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   Sparkles,
-  Search as SearchIcon,
-  Map as MapIcon,
   MapPin,
   Bell,
-  ShieldCheck,
-  TrendingUp,
-  GraduationCap,
   ArrowRight,
   HelpCircle,
+  GraduationCap,
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { ListingCard } from "@/components/ListingCard";
@@ -38,18 +34,13 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const chips = [
-  { label: "Tasdiqlangan", icon: ShieldCheck },
-  { label: "Universitet yaqin", icon: GraduationCap },
-  { label: "2M gacha", icon: TrendingUp },
-  { label: "Qizlar uchun" },
-  { label: "Yigitlar uchun" },
-  { label: "Metro yaqin" },
-];
+type Tab = "rooms" | "roommates";
 
 function Home() {
   const navigate = useNavigate();
   const listings = useAllListings();
+  const [tab, setTab] = useState<Tab>("rooms");
+
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (!localStorage.getItem("roomie_onboarded")) {
@@ -90,105 +81,112 @@ function Home() {
         </div>
       </header>
 
-
-      {/* Search + Map */}
-      <section className="px-5 pt-4">
-        <div className="flex items-center gap-2">
-          <Link
-            to="/search"
-            className="flex flex-1 items-center gap-2 rounded-2xl border border-border bg-card px-4 py-3 shadow-soft active:scale-[0.99] transition-transform"
+      {/* Dashboard tabs */}
+      <section className="px-5 pt-5">
+        <div
+          role="tablist"
+          aria-label="Dashboard"
+          className="grid grid-cols-2 gap-1 rounded-2xl bg-muted p-1"
+        >
+          <button
+            role="tab"
+            aria-selected={tab === "rooms"}
+            onClick={() => setTab("rooms")}
+            className={`rounded-xl py-2.5 text-sm font-semibold transition-colors ${
+              tab === "rooms"
+                ? "bg-card text-foreground shadow-soft"
+                : "text-muted-foreground"
+            }`}
           >
-            <SearchIcon className="h-4 w-4 text-muted-foreground" strokeWidth={2} />
-            <span className="flex-1 truncate text-sm text-muted-foreground">
-              Qidirish
-            </span>
-          </Link>
-          <Link
-            to="/map"
-            aria-label="Xarita"
-            className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-border bg-card text-foreground shadow-soft active:scale-95 transition-transform"
+            Kvartiralar
+          </button>
+          <button
+            role="tab"
+            aria-selected={tab === "roommates"}
+            onClick={() => setTab("roommates")}
+            className={`rounded-xl py-2.5 text-sm font-semibold transition-colors ${
+              tab === "roommates"
+                ? "bg-card text-foreground shadow-soft"
+                : "text-muted-foreground"
+            }`}
           >
-            <MapIcon className="h-5 w-5" strokeWidth={2} />
-          </Link>
+            Xonadoshlar
+          </button>
         </div>
       </section>
 
-
-
-      {/* Recommended */}
-      <section className="mt-7 px-5">
-        <div className="mb-3 flex items-end justify-between">
-          <div>
-            <h2 className="text-lg font-bold tracking-tight">Siz uchun tavsiya</h2>
-            <p className="text-xs text-muted-foreground">
-              AI sizga mos kvartiralarni tanladi
-            </p>
-          </div>
-          <Link
-            to="/search"
-            className="inline-flex items-center gap-1 text-xs font-semibold text-primary"
-          >
-            Barchasi <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
-
-        <div className="space-y-4">
-          {listings.map((l) => (
-            <ListingCard key={l.id} listing={l} />
-          ))}
-        </div>
-      </section>
-
-      {/* Roommate teaser */}
-      <section className="mt-8 px-5">
-        <div className="overflow-hidden rounded-3xl bg-card shadow-card">
-          <div className="bg-gradient-to-br from-[oklch(0.95_0.05_155)] to-[oklch(0.92_0.04_265)] p-5">
-            <div className="flex items-center gap-2 text-success">
-              <Sparkles className="h-4 w-4" strokeWidth={2.5} />
-              <span className="text-xs font-semibold uppercase tracking-wider">
-                AI Xonadosh moslashuvi
-              </span>
+      {tab === "rooms" ? (
+        <section className="mt-6 px-5">
+          <div className="mb-3 flex items-end justify-between">
+            <div>
+              <h2 className="text-lg font-bold tracking-tight">Siz uchun tavsiya</h2>
+              <p className="text-xs text-muted-foreground">
+                AI sizga mos kvartiralarni tanladi
+              </p>
             </div>
-            <h3 className="mt-2 text-[17px] font-bold text-foreground leading-snug">
-              Sizga 94% mos keladigan xonadosh topildi
-            </h3>
+            <Link
+              to="/search"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-primary"
+            >
+              Barchasi <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
           </div>
-          <div className="p-5">
+
+          <div className="space-y-4">
+            {listings.map((l) => (
+              <ListingCard key={l.id} listing={l} />
+            ))}
+          </div>
+        </section>
+      ) : (
+        <section className="mt-6 px-5">
+          <div className="mb-3 flex items-end justify-between">
+            <div>
+              <h2 className="text-lg font-bold tracking-tight">Xonadoshlar</h2>
+              <p className="text-xs text-muted-foreground">
+                Sizga mos keladigan talabalar
+              </p>
+            </div>
+            <Link
+              to="/roommates"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-primary"
+            >
+              Barchasi <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+
+          <div className="space-y-3">
             {roommates.map((r) => (
               <Link
                 key={r.id}
                 to="/roommates"
-                className="flex items-center gap-3 rounded-2xl py-2 -mx-2 px-2 active:bg-muted transition-colors"
+                className="flex items-center gap-3 rounded-2xl bg-card p-3 shadow-soft active:scale-[0.99] transition-transform"
               >
                 <img
                   src={r.image}
                   alt={r.name}
                   loading="lazy"
-                  className="h-12 w-12 shrink-0 rounded-2xl object-cover"
+                  className="h-14 w-14 shrink-0 rounded-2xl object-cover"
                 />
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-semibold">
                     {r.name}, {r.age}
                   </p>
-                  <p className="truncate text-xs text-muted-foreground">
-                    {r.university} · {r.tags.slice(0, 2).join(" · ")}
+                  <p className="mt-0.5 flex items-center gap-1 truncate text-xs text-muted-foreground">
+                    <GraduationCap className="h-3.5 w-3.5" />
+                    {r.university}
                   </p>
+                  <div className="mt-1.5 flex items-center gap-1 text-[11px] text-success">
+                    <Sparkles className="h-3 w-3" strokeWidth={2.5} />
+                    <span className="font-semibold">{r.match}% mos</span>
+                  </div>
                 </div>
-                <div className="shrink-0 rounded-full bg-success/10 px-2.5 py-1 text-xs font-bold text-success">
-                  {r.match}%
-                </div>
+                <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground" />
               </Link>
             ))}
-            <Link
-              to="/roommates"
-              className="mt-3 flex w-full items-center justify-center gap-1 rounded-2xl bg-foreground py-3 text-sm font-semibold text-background active:scale-[0.98] transition-transform"
-            >
-              Xonadosh topish
-              <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <div className="h-4" />
     </MobileShell>
