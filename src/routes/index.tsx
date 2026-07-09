@@ -189,6 +189,39 @@ function Home() {
         </section>
       )}
 
+      {/* Map preview */}
+      <section className="mt-8 px-5">
+        <Link
+          to="/map"
+          className="relative block overflow-hidden rounded-3xl bg-card shadow-card active:scale-[0.99] transition-transform"
+        >
+          <div className="relative h-40 w-full bg-[oklch(0.93_0.03_220)]">
+            <div
+              className="absolute inset-0 opacity-70"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 20% 30%, oklch(0.85 0.08 165) 0 6px, transparent 7px), radial-gradient(circle at 60% 55%, oklch(0.82 0.1 220) 0 6px, transparent 7px), radial-gradient(circle at 80% 25%, oklch(0.82 0.1 30) 0 6px, transparent 7px), linear-gradient(135deg, oklch(0.95 0.02 220) 0%, oklch(0.9 0.04 200) 100%)",
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4 text-white">
+              <div>
+                <p className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider">
+                  <MapIcon className="h-3.5 w-3.5" strokeWidth={2.5} />
+                  Xarita
+                </p>
+                <h3 className="mt-1 text-base font-bold">
+                  Kvartiralarni xaritada ko'ring
+                </h3>
+              </div>
+              <span className="grid h-10 w-10 place-items-center rounded-full bg-white/90 text-foreground shadow-lifted">
+                <ArrowRight className="h-4 w-4" />
+              </span>
+            </div>
+          </div>
+        </Link>
+      </section>
+
       <div className="h-4" />
     </MobileShell>
   );
