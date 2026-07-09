@@ -7,6 +7,7 @@ import {
   ArrowRight,
   HelpCircle,
   GraduationCap,
+  Map as MapIcon,
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { ListingCard } from "@/components/ListingCard";
