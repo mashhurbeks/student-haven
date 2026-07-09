@@ -1,13 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  Sparkles,
   MapPin,
   Bell,
   ArrowRight,
   HelpCircle,
   GraduationCap,
-  Map as MapIcon,
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { ListingCard } from "@/components/ListingCard";
@@ -156,71 +154,66 @@ function Home() {
             </Link>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {roommates.map((r) => (
-              <Link
+              <article
                 key={r.id}
-                to="/roommates"
-                className="flex items-center gap-3 rounded-2xl bg-card p-3 shadow-soft active:scale-[0.99] transition-transform"
+                className="overflow-hidden rounded-3xl bg-card shadow-card"
               >
-                <img
-                  src={r.image}
-                  alt={r.name}
-                  loading="lazy"
-                  className="h-14 w-14 shrink-0 rounded-2xl object-cover"
-                />
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-semibold">
-                    {r.name}, {r.age}
-                  </p>
-                  <p className="mt-0.5 flex items-center gap-1 truncate text-xs text-muted-foreground">
-                    <GraduationCap className="h-3.5 w-3.5" />
-                    {r.university}
-                  </p>
-                  <div className="mt-1.5 flex items-center gap-1 text-[11px] text-success">
-                    <Sparkles className="h-3 w-3" strokeWidth={2.5} />
-                    <span className="font-semibold">{r.match}% mos</span>
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
+                  <img
+                    src={r.image}
+                    alt={r.name}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-5 text-white">
+                    <div className="flex items-end justify-between gap-3">
+                      <div className="min-w-0">
+                        <h3 className="text-xl font-bold">
+                          {r.name}, {r.age}
+                        </h3>
+                        <p className="mt-0.5 flex items-center gap-1 text-xs text-white/85">
+                          <GraduationCap className="h-3.5 w-3.5" />
+                          {r.university}
+                        </p>
+                      </div>
+                      <div className="shrink-0 rounded-2xl bg-success px-3 py-1.5 text-sm font-bold text-success-foreground shadow-lifted">
+                        {r.match}% mos
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground" />
-              </Link>
+                <div className="p-5">
+                  <p className="text-sm text-foreground/90">{r.bio}</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {r.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-4 grid grid-cols-2 gap-2">
+                    <button className="rounded-2xl border border-border py-3 text-sm font-semibold active:scale-[0.98] transition">
+                      O'tkazish
+                    </button>
+                    <Link
+                      to="/roommates"
+                      className="grid place-items-center rounded-2xl bg-primary py-3 text-sm font-semibold text-primary-foreground active:scale-[0.98] transition"
+                    >
+                      Bog'lanish
+                    </Link>
+                  </div>
+                </div>
+              </article>
             ))}
           </div>
         </section>
       )}
 
-      {/* Map preview */}
-      <section className="mt-8 px-5">
-        <Link
-          to="/map"
-          className="relative block overflow-hidden rounded-3xl bg-card shadow-card active:scale-[0.99] transition-transform"
-        >
-          <div className="relative h-40 w-full bg-[oklch(0.93_0.03_220)]">
-            <div
-              className="absolute inset-0 opacity-70"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle at 20% 30%, oklch(0.85 0.08 165) 0 6px, transparent 7px), radial-gradient(circle at 60% 55%, oklch(0.82 0.1 220) 0 6px, transparent 7px), radial-gradient(circle at 80% 25%, oklch(0.82 0.1 30) 0 6px, transparent 7px), linear-gradient(135deg, oklch(0.95 0.02 220) 0%, oklch(0.9 0.04 200) 100%)",
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-4 text-white">
-              <div>
-                <p className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider">
-                  <MapIcon className="h-3.5 w-3.5" strokeWidth={2.5} />
-                  Xarita
-                </p>
-                <h3 className="mt-1 text-base font-bold">
-                  Kvartiralarni xaritada ko'ring
-                </h3>
-              </div>
-              <span className="grid h-10 w-10 place-items-center rounded-full bg-white/90 text-foreground shadow-lifted">
-                <ArrowRight className="h-4 w-4" />
-              </span>
-            </div>
-          </div>
-        </Link>
-      </section>
 
       <div className="h-4" />
     </MobileShell>
