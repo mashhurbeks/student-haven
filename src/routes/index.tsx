@@ -1,13 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  Sparkles,
   MapPin,
   Bell,
   ArrowRight,
   HelpCircle,
   GraduationCap,
-  Map as MapIcon,
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { ListingCard } from "@/components/ListingCard";
