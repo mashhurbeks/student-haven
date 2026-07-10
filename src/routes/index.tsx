@@ -160,7 +160,7 @@ function Home() {
                 key={r.id}
                 className="overflow-hidden rounded-3xl bg-card shadow-card"
               >
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
                   <img
                     src={r.image}
                     alt={r.name}
