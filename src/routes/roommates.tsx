@@ -83,15 +83,15 @@ function RoommatesPage() {
                   ))}
                 </div>
                 <div className="mt-4 grid grid-cols-2 gap-2">
-                  <button className="rounded-2xl border border-border py-3 text-sm font-semibold active:scale-[0.98] transition">
-                    O'tkazish
-                  </button>
-                  <button className="rounded-2xl bg-primary py-3 text-sm font-semibold text-primary-foreground active:scale-[0.98] transition">
+                  <span className="grid place-items-center rounded-2xl border border-border py-3 text-sm font-semibold">
+                    Profilni ko'rish
+                  </span>
+                  <span className="grid place-items-center rounded-2xl bg-primary py-3 text-sm font-semibold text-primary-foreground">
                     Bog'lanish
-                  </button>
+                  </span>
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
