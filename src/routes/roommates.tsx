@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { GraduationCap, Sparkles } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { roommates } from "@/lib/mock-data";
@@ -40,9 +40,11 @@ function RoommatesPage() {
       <section className="mt-6 px-5">
         <div className="space-y-4">
           {roommates.map((r) => (
-            <article
+            <Link
               key={r.id}
-              className="overflow-hidden rounded-3xl bg-card shadow-card"
+              to="/roommate/$id"
+              params={{ id: r.id }}
+              className="block overflow-hidden rounded-3xl bg-card shadow-card active:scale-[0.99] transition-transform"
             >
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
                 <img
@@ -81,15 +83,15 @@ function RoommatesPage() {
                   ))}
                 </div>
                 <div className="mt-4 grid grid-cols-2 gap-2">
-                  <button className="rounded-2xl border border-border py-3 text-sm font-semibold active:scale-[0.98] transition">
-                    O'tkazish
-                  </button>
-                  <button className="rounded-2xl bg-primary py-3 text-sm font-semibold text-primary-foreground active:scale-[0.98] transition">
+                  <span className="grid place-items-center rounded-2xl border border-border py-3 text-sm font-semibold">
+                    Profilni ko'rish
+                  </span>
+                  <span className="grid place-items-center rounded-2xl bg-primary py-3 text-sm font-semibold text-primary-foreground">
                     Bog'lanish
-                  </button>
+                  </span>
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>

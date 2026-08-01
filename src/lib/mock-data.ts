@@ -30,6 +30,15 @@ export type Roommate = {
   match: number;
   bio: string;
   tags: string[];
+  course?: string;
+  district?: string;
+  budget?: number;
+  verified?: boolean;
+  gender?: "male" | "female";
+  languages?: string[];
+  lifestyle?: { label: string; value: string }[];
+  habits?: { label: string; ok: boolean }[];
+  matchReasons?: string[];
 };
 
 export const listings: Listing[] = [
@@ -91,8 +100,31 @@ export const roommates: Roommate[] = [
     university: "INHA",
     image: rm1,
     match: 94,
-    bio: "Erta uxlab, erta turaman. Tinch va toza yashashni yoqtiraman.",
+    bio: "Erta uxlab, erta turaman. Tinch va toza yashashni yoqtiraman. IT yo'nalishida o'qiyman, kunning ko'p qismi darsda va loyihalar ustida o'tadi.",
     tags: ["Chekmaydi", "Tinch", "Toza"],
+    course: "2-kurs",
+    district: "Mirzo Ulug'bek",
+    budget: 2000000,
+    verified: true,
+    gender: "male",
+    languages: ["O'zbek", "Ingliz", "Rus"],
+    lifestyle: [
+      { label: "Uyqu rejimi", value: "23:00 — 07:00" },
+      { label: "Tozalik", value: "Juda tartibli" },
+      { label: "Mehmonlar", value: "Kamdan-kam" },
+      { label: "Ovqat", value: "O'zim pishiraman" },
+    ],
+    habits: [
+      { label: "Chekmaydi", ok: true },
+      { label: "Ichmaydi", ok: true },
+      { label: "Uy hayvoni yo'q", ok: true },
+      { label: "Kech uyg'oq qolmaydi", ok: true },
+    ],
+    matchReasons: [
+      "Ikkalangiz ham erta uxlaysiz",
+      "Tozalik darajangiz bir xil",
+      "Byudjetlaringiz mos keladi",
+    ],
   },
   {
     id: "r2",
@@ -101,8 +133,31 @@ export const roommates: Roommate[] = [
     university: "WIUT",
     image: rm2,
     match: 87,
-    bio: "Kutubxonada ko'p vaqt o'tkazaman. Kechqurun kitob o'qishni yaxshi ko'raman.",
+    bio: "Kutubxonada ko'p vaqt o'tkazaman. Kechqurun kitob o'qishni yaxshi ko'raman. Tinch, hurmatli xonadosh qidiryapman.",
     tags: ["Kitobxon", "Vegetarian", "Sport"],
+    course: "1-kurs",
+    district: "Yunusobod",
+    budget: 1700000,
+    verified: true,
+    gender: "female",
+    languages: ["O'zbek", "Ingliz"],
+    lifestyle: [
+      { label: "Uyqu rejimi", value: "00:00 — 08:00" },
+      { label: "Tozalik", value: "Tartibli" },
+      { label: "Mehmonlar", value: "Ba'zan" },
+      { label: "Ovqat", value: "Vegetarian" },
+    ],
+    habits: [
+      { label: "Chekmaydi", ok: true },
+      { label: "Ichmaydi", ok: true },
+      { label: "Uy hayvoni bor", ok: false },
+      { label: "Sport bilan shug'ullanadi", ok: true },
+    ],
+    matchReasons: [
+      "Ikkalangiz ham tinchlikni qadrlaysiz",
+      "Universitetlaringiz yaqin",
+      "O'xshash kunlik tartib",
+    ],
   },
 ];
 

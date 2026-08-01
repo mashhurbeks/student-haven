@@ -156,9 +156,11 @@ function Home() {
 
           <div className="space-y-4">
             {roommates.map((r) => (
-              <article
+              <Link
                 key={r.id}
-                className="overflow-hidden rounded-3xl bg-card shadow-card"
+                to="/roommate/$id"
+                params={{ id: r.id }}
+                className="block overflow-hidden rounded-3xl bg-card shadow-card active:scale-[0.99] transition-transform"
               >
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
                   <img
@@ -197,18 +199,15 @@ function Home() {
                     ))}
                   </div>
                   <div className="mt-4 grid grid-cols-2 gap-2">
-                    <button className="rounded-2xl border border-border py-3 text-sm font-semibold active:scale-[0.98] transition">
-                      O'tkazish
-                    </button>
-                    <Link
-                      to="/roommates"
-                      className="grid place-items-center rounded-2xl bg-primary py-3 text-sm font-semibold text-primary-foreground active:scale-[0.98] transition"
-                    >
+                    <span className="grid place-items-center rounded-2xl border border-border py-3 text-sm font-semibold">
+                      Profilni ko'rish
+                    </span>
+                    <span className="grid place-items-center rounded-2xl bg-primary py-3 text-sm font-semibold text-primary-foreground">
                       Bog'lanish
-                    </Link>
+                    </span>
                   </div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </section>

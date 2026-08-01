@@ -21,6 +21,7 @@ import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AddListingRouteImport } from './routes/add-listing'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as RoommateIdRouteImport } from './routes/roommate.$id'
 import { Route as ListingIdRouteImport } from './routes/listing.$id'
 
 const WelcomeRoute = WelcomeRouteImport.update({
@@ -83,6 +84,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RoommateIdRoute = RoommateIdRouteImport.update({
+  id: '/roommate/$id',
+  path: '/roommate/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ListingIdRoute = ListingIdRouteImport.update({
   id: '/listing/$id',
   path: '/listing/$id',
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/search': typeof SearchRoute
   '/welcome': typeof WelcomeRoute
   '/listing/$id': typeof ListingIdRoute
+  '/roommate/$id': typeof RoommateIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/search': typeof SearchRoute
   '/welcome': typeof WelcomeRoute
   '/listing/$id': typeof ListingIdRoute
+  '/roommate/$id': typeof RoommateIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/search': typeof SearchRoute
   '/welcome': typeof WelcomeRoute
   '/listing/$id': typeof ListingIdRoute
+  '/roommate/$id': typeof RoommateIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/welcome'
     | '/listing/$id'
+    | '/roommate/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/welcome'
     | '/listing/$id'
+    | '/roommate/$id'
   id:
     | '__root__'
     | '/'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '/search'
     | '/welcome'
     | '/listing/$id'
+    | '/roommate/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -197,6 +209,7 @@ export interface RootRouteChildren {
   SearchRoute: typeof SearchRoute
   WelcomeRoute: typeof WelcomeRoute
   ListingIdRoute: typeof ListingIdRoute
+  RoommateIdRoute: typeof RoommateIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -285,6 +298,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/roommate/$id': {
+      id: '/roommate/$id'
+      path: '/roommate/$id'
+      fullPath: '/roommate/$id'
+      preLoaderRoute: typeof RoommateIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/listing/$id': {
       id: '/listing/$id'
       path: '/listing/$id'
@@ -309,6 +329,7 @@ const rootRouteChildren: RootRouteChildren = {
   SearchRoute: SearchRoute,
   WelcomeRoute: WelcomeRoute,
   ListingIdRoute: ListingIdRoute,
+  RoommateIdRoute: RoommateIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
