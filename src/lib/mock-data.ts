@@ -30,6 +30,15 @@ export type Roommate = {
   match: number;
   bio: string;
   tags: string[];
+  course?: string;
+  district?: string;
+  budget?: number;
+  verified?: boolean;
+  gender?: "male" | "female";
+  languages?: string[];
+  lifestyle?: { label: string; value: string }[];
+  habits?: { label: string; ok: boolean }[];
+  matchReasons?: string[];
 };
 
 export const listings: Listing[] = [
