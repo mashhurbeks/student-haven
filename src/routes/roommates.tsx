@@ -40,9 +40,11 @@ function RoommatesPage() {
       <section className="mt-6 px-5">
         <div className="space-y-4">
           {roommates.map((r) => (
-            <article
+            <Link
               key={r.id}
-              className="overflow-hidden rounded-3xl bg-card shadow-card"
+              to="/roommate/$id"
+              params={{ id: r.id }}
+              className="block overflow-hidden rounded-3xl bg-card shadow-card active:scale-[0.99] transition-transform"
             >
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
                 <img
