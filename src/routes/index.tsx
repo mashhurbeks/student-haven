@@ -4,7 +4,7 @@ import {
   MapPin,
   Bell,
   ArrowRight,
-  HelpCircle,
+  Search,
   GraduationCap,
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
@@ -63,11 +63,11 @@ function Home() {
           </div>
           <div className="flex shrink-0 items-center gap-2">
             <Link
-              to="/help"
-              aria-label="Yordam"
+              to="/search"
+              aria-label="Qidiruv"
               className="grid h-11 w-11 place-items-center rounded-2xl bg-card shadow-soft active:scale-95 transition-transform"
             >
-              <HelpCircle className="h-5 w-5" strokeWidth={2} />
+              <Search className="h-5 w-5" strokeWidth={2} />
             </Link>
             <button
               aria-label="Bildirishnomalar"
