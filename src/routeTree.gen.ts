@@ -15,14 +15,16 @@ import { Route as RoommatesRouteImport } from './routes/roommates'
 import { Route as RoommateSurveyRouteImport } from './routes/roommate-survey'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as HelpRouteImport } from './routes/help'
-import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AddListingRouteImport } from './routes/add-listing'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ChatIndexRouteImport } from './routes/chat.index'
 import { Route as RoommateIdRouteImport } from './routes/roommate.$id'
 import { Route as ListingIdRouteImport } from './routes/listing.$id'
+import { Route as ChatIdRouteImport } from './routes/chat.$id'
 
 const WelcomeRoute = WelcomeRouteImport.update({
   id: '/welcome',
@@ -54,6 +56,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MapRoute = MapRouteImport.update({
   id: '/map',
   path: '/map',
@@ -62,11 +69,6 @@ const MapRoute = MapRouteImport.update({
 const HelpRoute = HelpRouteImport.update({
   id: '/help',
   path: '/help',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChatRoute = ChatRouteImport.update({
-  id: '/chat',
-  path: '/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -84,6 +86,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChatIndexRoute = ChatIndexRouteImport.update({
+  id: '/chat/',
+  path: '/chat/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RoommateIdRoute = RoommateIdRouteImport.update({
   id: '/roommate/$id',
   path: '/roommate/$id',
@@ -94,55 +101,66 @@ const ListingIdRoute = ListingIdRouteImport.update({
   path: '/listing/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChatIdRoute = ChatIdRouteImport.update({
+  id: '/chat/$id',
+  path: '/chat/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/add-listing': typeof AddListingRoute
   '/auth': typeof AuthRoute
-  '/chat': typeof ChatRoute
   '/help': typeof HelpRoute
   '/map': typeof MapRoute
+  '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/roommate-survey': typeof RoommateSurveyRoute
   '/roommates': typeof RoommatesRoute
   '/search': typeof SearchRoute
   '/welcome': typeof WelcomeRoute
+  '/chat/$id': typeof ChatIdRoute
   '/listing/$id': typeof ListingIdRoute
   '/roommate/$id': typeof RoommateIdRoute
+  '/chat/': typeof ChatIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/add-listing': typeof AddListingRoute
   '/auth': typeof AuthRoute
-  '/chat': typeof ChatRoute
   '/help': typeof HelpRoute
   '/map': typeof MapRoute
+  '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/roommate-survey': typeof RoommateSurveyRoute
   '/roommates': typeof RoommatesRoute
   '/search': typeof SearchRoute
   '/welcome': typeof WelcomeRoute
+  '/chat/$id': typeof ChatIdRoute
   '/listing/$id': typeof ListingIdRoute
   '/roommate/$id': typeof RoommateIdRoute
+  '/chat': typeof ChatIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/add-listing': typeof AddListingRoute
   '/auth': typeof AuthRoute
-  '/chat': typeof ChatRoute
   '/help': typeof HelpRoute
   '/map': typeof MapRoute
+  '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
   '/profile': typeof ProfileRoute
   '/roommate-survey': typeof RoommateSurveyRoute
   '/roommates': typeof RoommatesRoute
   '/search': typeof SearchRoute
   '/welcome': typeof WelcomeRoute
+  '/chat/$id': typeof ChatIdRoute
   '/listing/$id': typeof ListingIdRoute
   '/roommate/$id': typeof RoommateIdRoute
+  '/chat/': typeof ChatIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -150,66 +168,74 @@ export interface FileRouteTypes {
     | '/'
     | '/add-listing'
     | '/auth'
-    | '/chat'
     | '/help'
     | '/map'
+    | '/notifications'
     | '/onboarding'
     | '/profile'
     | '/roommate-survey'
     | '/roommates'
     | '/search'
     | '/welcome'
+    | '/chat/$id'
     | '/listing/$id'
     | '/roommate/$id'
+    | '/chat/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/add-listing'
     | '/auth'
-    | '/chat'
     | '/help'
     | '/map'
+    | '/notifications'
     | '/onboarding'
     | '/profile'
     | '/roommate-survey'
     | '/roommates'
     | '/search'
     | '/welcome'
+    | '/chat/$id'
     | '/listing/$id'
     | '/roommate/$id'
+    | '/chat'
   id:
     | '__root__'
     | '/'
     | '/add-listing'
     | '/auth'
-    | '/chat'
     | '/help'
     | '/map'
+    | '/notifications'
     | '/onboarding'
     | '/profile'
     | '/roommate-survey'
     | '/roommates'
     | '/search'
     | '/welcome'
+    | '/chat/$id'
     | '/listing/$id'
     | '/roommate/$id'
+    | '/chat/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AddListingRoute: typeof AddListingRoute
   AuthRoute: typeof AuthRoute
-  ChatRoute: typeof ChatRoute
   HelpRoute: typeof HelpRoute
   MapRoute: typeof MapRoute
+  NotificationsRoute: typeof NotificationsRoute
   OnboardingRoute: typeof OnboardingRoute
   ProfileRoute: typeof ProfileRoute
   RoommateSurveyRoute: typeof RoommateSurveyRoute
   RoommatesRoute: typeof RoommatesRoute
   SearchRoute: typeof SearchRoute
   WelcomeRoute: typeof WelcomeRoute
+  ChatIdRoute: typeof ChatIdRoute
   ListingIdRoute: typeof ListingIdRoute
   RoommateIdRoute: typeof RoommateIdRoute
+  ChatIndexRoute: typeof ChatIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -256,6 +282,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/map': {
       id: '/map'
       path: '/map'
@@ -268,13 +301,6 @@ declare module '@tanstack/react-router' {
       path: '/help'
       fullPath: '/help'
       preLoaderRoute: typeof HelpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/chat': {
-      id: '/chat'
-      path: '/chat'
-      fullPath: '/chat'
-      preLoaderRoute: typeof ChatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -298,6 +324,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chat/': {
+      id: '/chat/'
+      path: '/chat'
+      fullPath: '/chat/'
+      preLoaderRoute: typeof ChatIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/roommate/$id': {
       id: '/roommate/$id'
       path: '/roommate/$id'
@@ -312,6 +345,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ListingIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chat/$id': {
+      id: '/chat/$id'
+      path: '/chat/$id'
+      fullPath: '/chat/$id'
+      preLoaderRoute: typeof ChatIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -319,28 +359,20 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AddListingRoute: AddListingRoute,
   AuthRoute: AuthRoute,
-  ChatRoute: ChatRoute,
   HelpRoute: HelpRoute,
   MapRoute: MapRoute,
+  NotificationsRoute: NotificationsRoute,
   OnboardingRoute: OnboardingRoute,
   ProfileRoute: ProfileRoute,
   RoommateSurveyRoute: RoommateSurveyRoute,
   RoommatesRoute: RoommatesRoute,
   SearchRoute: SearchRoute,
   WelcomeRoute: WelcomeRoute,
+  ChatIdRoute: ChatIdRoute,
   ListingIdRoute: ListingIdRoute,
   RoommateIdRoute: RoommateIdRoute,
+  ChatIndexRoute: ChatIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
