@@ -33,12 +33,12 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-type Tab = "rooms" | "roommates";
+type Tab = "roommates" | "rooms";
 
 function Home() {
   const navigate = useNavigate();
   const listings = useAllListings();
-  const [tab, setTab] = useState<Tab>("rooms");
+  const [tab, setTab] = useState<Tab>("roommates");
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -89,18 +89,6 @@ function Home() {
         >
           <button
             role="tab"
-            aria-selected={tab === "rooms"}
-            onClick={() => setTab("rooms")}
-            className={`rounded-xl py-2.5 text-sm font-semibold transition-colors ${
-              tab === "rooms"
-                ? "bg-card text-foreground shadow-soft"
-                : "text-muted-foreground"
-            }`}
-          >
-            Kvartiralar
-          </button>
-          <button
-            role="tab"
             aria-selected={tab === "roommates"}
             onClick={() => setTab("roommates")}
             className={`rounded-xl py-2.5 text-sm font-semibold transition-colors ${
@@ -111,33 +99,22 @@ function Home() {
           >
             Xonadoshlar
           </button>
+          <button
+            role="tab"
+            aria-selected={tab === "rooms"}
+            onClick={() => setTab("rooms")}
+            className={`rounded-xl py-2.5 text-sm font-semibold transition-colors ${
+              tab === "rooms"
+                ? "bg-card text-foreground shadow-soft"
+                : "text-muted-foreground"
+            }`}
+          >
+            Kvartiralar
+          </button>
         </div>
       </section>
 
-      {tab === "rooms" ? (
-        <section className="mt-6 px-5">
-          <div className="mb-3 flex items-end justify-between">
-            <div>
-              <h2 className="text-lg font-bold tracking-tight">Siz uchun tavsiya</h2>
-              <p className="text-xs text-muted-foreground">
-                AI sizga mos kvartiralarni tanladi
-              </p>
-            </div>
-            <Link
-              to="/search"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-primary"
-            >
-              Barchasi <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-
-          <div className="space-y-4">
-            {listings.map((l) => (
-              <ListingCard key={l.id} listing={l} />
-            ))}
-          </div>
-        </section>
-      ) : (
+      {tab === "roommates" ? (
         <section className="mt-6 px-5">
           <div className="mb-3 flex items-end justify-between">
             <div>
@@ -208,6 +185,29 @@ function Home() {
                   </div>
                 </div>
               </Link>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <section className="mt-6 px-5">
+          <div className="mb-3 flex items-end justify-between">
+            <div>
+              <h2 className="text-lg font-bold tracking-tight">Siz uchun tavsiya</h2>
+              <p className="text-xs text-muted-foreground">
+                AI sizga mos kvartiralarni tanladi
+              </p>
+            </div>
+            <Link
+              to="/search"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-primary"
+            >
+              Barchasi <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+
+          <div className="space-y-4">
+            {listings.map((l) => (
+              <ListingCard key={l.id} listing={l} />
             ))}
           </div>
         </section>
