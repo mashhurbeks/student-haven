@@ -6,7 +6,7 @@ import {
   GraduationCap,
   Heart,
   MapPin,
-  
+  MessageCircle,
   Sparkles,
   Wallet,
   X,
