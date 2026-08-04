@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { ListingCard } from "@/components/ListingCard";
+import { InterestButton } from "@/components/InterestButton";
 import { roommates } from "@/lib/mock-data";
 import { useAllListings } from "@/hooks/use-all-listings";
 
