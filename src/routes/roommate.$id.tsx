@@ -234,13 +234,7 @@ function RoommateProfile() {
               strokeWidth={2}
             />
           </button>
-          <Link
-            to="/chat"
-            className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-semibold text-primary-foreground active:scale-[0.98] transition"
-          >
-            <MessageCircle className="h-4 w-4" />
-            Bog'lanish
-          </Link>
+          <InterestButton roommateId={r.id} name={r.name} className="h-12 w-full" />
         </div>
       </div>
     </MobileShell>
