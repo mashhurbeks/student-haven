@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { MobileShell } from "@/components/MobileShell";
+import { InterestButton } from "@/components/InterestButton";
 import { roommates, formatSom } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/roommate/$id")({
