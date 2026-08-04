@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { GraduationCap, Sparkles } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
+import { InterestButton } from "@/components/InterestButton";
 import { roommates } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/roommates")({
