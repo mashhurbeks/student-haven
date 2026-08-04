@@ -224,7 +224,7 @@ function RoommateProfile() {
       <div className="h-4" />
 
       <div className="fixed inset-x-0 bottom-20 z-40 mx-auto max-w-[430px] px-5">
-        <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-2 rounded-3xl bg-card/95 p-2 shadow-lifted backdrop-blur">
+        <div className="grid grid-cols-[auto_minmax(0,1fr)_minmax(0,1fr)] gap-2 rounded-3xl bg-card/95 p-2 shadow-lifted backdrop-blur">
           <button
             onClick={() => setSaved((s) => !s)}
             aria-label="Saqlash"
@@ -235,6 +235,13 @@ function RoommateProfile() {
               strokeWidth={2}
             />
           </button>
+          <Link
+            to="/chat"
+            className="flex h-12 items-center justify-center gap-2 rounded-2xl border border-border text-sm font-semibold active:scale-[0.98] transition"
+          >
+            <MessageCircle className="h-4 w-4" />
+            Bog'lanish
+          </Link>
           <InterestButton roommateId={r.id} name={r.name} className="h-12 w-full" />
         </div>
       </div>
