@@ -176,13 +176,8 @@ function Home() {
                       </span>
                     ))}
                   </div>
-                  <div className="mt-4 grid grid-cols-2 gap-2">
-                    <span className="grid place-items-center rounded-2xl border border-border py-3 text-sm font-semibold">
-                      Profilni ko'rish
-                    </span>
-                    <span className="grid place-items-center rounded-2xl bg-primary py-3 text-sm font-semibold text-primary-foreground">
-                      Bog'lanish
-                    </span>
+                  <div className="mt-4">
+                    <InterestButton roommateId={r.id} name={r.name} className="w-full" />
                   </div>
                 </div>
               </Link>
