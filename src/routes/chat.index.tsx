@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Search } from "lucide-react";
+import { Search, Sparkles } from "lucide-react";
 import { MobileShell } from "@/components/MobileShell";
 import { threads } from "@/lib/mock-chat";
 
