@@ -24,6 +24,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ChatIndexRouteImport } from './routes/chat.index'
 import { Route as RoommateIdRouteImport } from './routes/roommate.$id'
 import { Route as ListingIdRouteImport } from './routes/listing.$id'
+import { Route as ChatRumiRouteImport } from './routes/chat.rumi'
 import { Route as ChatIdRouteImport } from './routes/chat.$id'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
 
@@ -102,6 +103,11 @@ const ListingIdRoute = ListingIdRouteImport.update({
   path: '/listing/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChatRumiRoute = ChatRumiRouteImport.update({
+  id: '/chat/rumi',
+  path: '/chat/rumi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChatIdRoute = ChatIdRouteImport.update({
   id: '/chat/$id',
   path: '/chat/$id',
@@ -128,6 +134,7 @@ export interface FileRoutesByFullPath {
   '/welcome': typeof WelcomeRoute
   '/api/chat': typeof ApiChatRoute
   '/chat/$id': typeof ChatIdRoute
+  '/chat/rumi': typeof ChatRumiRoute
   '/listing/$id': typeof ListingIdRoute
   '/roommate/$id': typeof RoommateIdRoute
   '/chat/': typeof ChatIndexRoute
@@ -147,6 +154,7 @@ export interface FileRoutesByTo {
   '/welcome': typeof WelcomeRoute
   '/api/chat': typeof ApiChatRoute
   '/chat/$id': typeof ChatIdRoute
+  '/chat/rumi': typeof ChatRumiRoute
   '/listing/$id': typeof ListingIdRoute
   '/roommate/$id': typeof RoommateIdRoute
   '/chat': typeof ChatIndexRoute
@@ -167,6 +175,7 @@ export interface FileRoutesById {
   '/welcome': typeof WelcomeRoute
   '/api/chat': typeof ApiChatRoute
   '/chat/$id': typeof ChatIdRoute
+  '/chat/rumi': typeof ChatRumiRoute
   '/listing/$id': typeof ListingIdRoute
   '/roommate/$id': typeof RoommateIdRoute
   '/chat/': typeof ChatIndexRoute
@@ -188,6 +197,7 @@ export interface FileRouteTypes {
     | '/welcome'
     | '/api/chat'
     | '/chat/$id'
+    | '/chat/rumi'
     | '/listing/$id'
     | '/roommate/$id'
     | '/chat/'
@@ -207,6 +217,7 @@ export interface FileRouteTypes {
     | '/welcome'
     | '/api/chat'
     | '/chat/$id'
+    | '/chat/rumi'
     | '/listing/$id'
     | '/roommate/$id'
     | '/chat'
@@ -226,6 +237,7 @@ export interface FileRouteTypes {
     | '/welcome'
     | '/api/chat'
     | '/chat/$id'
+    | '/chat/rumi'
     | '/listing/$id'
     | '/roommate/$id'
     | '/chat/'
@@ -246,6 +258,7 @@ export interface RootRouteChildren {
   WelcomeRoute: typeof WelcomeRoute
   ApiChatRoute: typeof ApiChatRoute
   ChatIdRoute: typeof ChatIdRoute
+  ChatRumiRoute: typeof ChatRumiRoute
   ListingIdRoute: typeof ListingIdRoute
   RoommateIdRoute: typeof RoommateIdRoute
   ChatIndexRoute: typeof ChatIndexRoute
@@ -358,6 +371,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ListingIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/chat/rumi': {
+      id: '/chat/rumi'
+      path: '/chat/rumi'
+      fullPath: '/chat/rumi'
+      preLoaderRoute: typeof ChatRumiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/chat/$id': {
       id: '/chat/$id'
       path: '/chat/$id'
@@ -390,6 +410,7 @@ const rootRouteChildren: RootRouteChildren = {
   WelcomeRoute: WelcomeRoute,
   ApiChatRoute: ApiChatRoute,
   ChatIdRoute: ChatIdRoute,
+  ChatRumiRoute: ChatRumiRoute,
   ListingIdRoute: ListingIdRoute,
   RoommateIdRoute: RoommateIdRoute,
   ChatIndexRoute: ChatIndexRoute,
