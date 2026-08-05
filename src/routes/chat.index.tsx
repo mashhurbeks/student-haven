@@ -42,6 +42,28 @@ function ChatListPage() {
       </section>
 
       <section className="mt-4 px-5">
+        <Link
+          to="/chat/rumi"
+          className="flex items-center gap-3 rounded-3xl bg-card p-4 shadow-card transition-transform active:scale-[0.99]"
+        >
+          <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-primary text-primary-foreground">
+            <Sparkles className="h-6 w-6" strokeWidth={2.5} />
+          </span>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2">
+              <p className="truncate text-sm font-semibold">Rumi AI</p>
+              <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                AI
+              </span>
+            </div>
+            <p className="truncate text-xs text-muted-foreground">
+              Ehtiyojlaringizga mos kvartiralarni tavsiya qilaman
+            </p>
+          </div>
+        </Link>
+      </section>
+
+      <section className="mt-4 px-5">
         <div className="divide-y divide-border overflow-hidden rounded-3xl bg-card shadow-card">
           {threads.map((t) => (
             <Link
